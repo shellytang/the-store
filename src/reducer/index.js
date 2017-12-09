@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import itemsReducer from './reducer-items';
+import ItemsReducer from './reducer-items';
 import ActiveItem from './reducer-active-item';
-import ShoppingCart from './reducter-shopping-cart';
+import ShoppingCart from './reducer-shopping-cart';
 
 const rootReducer = combineReducers({
   items: ItemsReducer,
