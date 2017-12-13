@@ -1,11 +1,15 @@
 export default function(state=[], action) {
-  console.log('ACTION: ', action);
+  console.log('ACTION: ', action.payload);
   console.log('STATE: ', state);
-  console.log('what: ', action.type);
-  console.log('action payload: ', action.payload);
   switch(action.type) {
     case 'ADD_ITEM':
-      return [action.payload, ...state];
+      let names = state.map(item => {
+        return item.name;
+      });
+      if(names.indexOf(action.payload.name) !== -1) {
+        return state;;
+      }
+      return [...state, action.payload]
     default:
       return state;
   }

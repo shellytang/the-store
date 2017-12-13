@@ -4,32 +4,30 @@ import { connect } from 'react-redux';
 
 class ShoppingCart extends Component {
 
-  renderCart() {
-    return this.props.cart.map(item => {
+  render () {
+
+    if (this.props.cart.length === 0) {
+      return <div>Cart is empty</div>;
+    }
+
+    const cartList = this.props.cart.map((item, index) => {
       return (
-        <div key={item.name}>
+        <div key={index}>
           <p>{item.name}</p>
           <p>{item.description}</p>
           <p>${item.price}</p>
         </div>
-      )
-    })
-  }
-
-  render () {
-
-    if(!this.props.cart) {
-      return 'Cart is empty';
-    }
+      );
+    });
 
     return (
       <div>
         <h2>This is the shopping cart!</h2>
         <ul>
-          {this.renderCart()}
+          {cartList}
         </ul>
       </div>
-    )
+    );
 
   }
 

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToCart } from '../../action/index';
+import { addToCart } from '../../actions/index';
 import { bindActionCreators } from 'redux';
 
 class ItemList extends Component {
   renderList() {
-    return this.props.items.map(item => {
+    return this.props.items.map((item, index) => {
       return (
         <li
-          key={item.name}
+          key={index}
           onClick={() => this.props.addToCart(item)}
         >
           {item.name}
