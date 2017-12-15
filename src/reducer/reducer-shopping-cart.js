@@ -7,9 +7,9 @@ export default function(state=[], action) {
         return item.name;
       });
       if(names.indexOf(action.payload.name) !== -1) {
-        return state;;
+        return state;
       }
-      return [...state, action.payload]
+      return [...state, action.payload];
     default:
       return state;
   }

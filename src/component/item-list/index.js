@@ -1,42 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addToCart } from '../../actions/index';
-import { bindActionCreators } from 'redux';
 
 class ItemList extends Component {
-  renderList() {
-    return this.props.items.map((item, index) => {
-      return (
-        <li
-          key={index}
-          onClick={() => this.props.addToCart(item)}
-        >
-          {item.name}
-        </li>
-      )
-    });
-  }
-
   render() {
     return (
       <div>
         <h2>This is the Item List Component!</h2>
-        <ul>
-          {this.renderList()}
-        </ul>
+        <div>
+          {this.props.children}
+        </div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    items: state.items
-  }
-};
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addToCart: addToCart }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ItemList);
+export default ItemList;

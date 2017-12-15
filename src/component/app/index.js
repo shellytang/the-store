@@ -1,7 +1,8 @@
 import './app.css';
 import React, { Component } from 'react';
-import ItemList from '../item-list/index.js';
-import ShoppingCart from '../shopping-cart/index.js';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import ItemContainer from '../../container/item-container/index';
+import ShoppingCartContainer from '../../container/shopping-cart-container/index';
 
 class App extends Component {
   render() {
@@ -10,11 +11,12 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <ItemList />
-        <ShoppingCart />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' component={ItemContainer} /> 
+            <Route exact path='/cart' component={ShoppingCartContainer} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
