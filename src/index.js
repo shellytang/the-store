@@ -4,15 +4,30 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import promise from 'redux-promise';
-import reducers from './reducer';
-import App from './component/app/index';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 
-const createStoreWithMiddleWare = applyMiddleware(promise)(createStore);
+import reducers from './reducer';
+import App from './component/app/index';
+import Item from './container/item/index';
+import { getItems } from './actions/index';
+// import ShoppingCart from './container/shopping-cart/index';
+
+const store = createStore(
+  reducers,
+  applyMiddleware(promise)
+);
+
+store.dispatch(getItems()); //dispatch action that pulls the items data and updates state return an object with id as keys.
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleWare(reducers)}>
-    <App />
+  <Provider store={store}>
+    <BrowserRouter>
+      <Switch>
+        <Route path='/products/:id' component={Item} />
+        <Route path='/' component={App} />
+      </Switch>
+    </BrowserRouter>
   </Provider>
 , document.getElementById('root'));
 registerServiceWorker();

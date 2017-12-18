@@ -1,8 +1,9 @@
-// export const ADD_ITEM = 'ADD_ITEM';
+import store from '../data/store.json';
 
-export function addToCart(item) {
+export const GET_ITEMS = 'GET_ITEMS';
+export function getItems() {
   return {
-    type: 'ADD_ITEM',
-    payload: item,
+    type: GET_ITEMS,
+    payload: store,
   };
 }
