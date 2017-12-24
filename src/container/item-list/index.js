@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { getItems } from '../../actions/index';
+// import { getItems } from '../../actions/index';
 import Item from '../item/index';
 
 class ItemList extends Component {
 
   render() {
-   
-    console.log('WHAT: ', this.props.items);
-
     const product = _.map(this.props.items, item => {
       return (
         <Link 
@@ -40,4 +37,4 @@ const mapStateToProps = state => ({
   items: state.items
 })
 
-export default connect(mapStateToProps, { getItems })(ItemList);
+export default connect(mapStateToProps)(ItemList);

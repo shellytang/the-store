@@ -7,11 +7,11 @@ import promise from 'redux-promise';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 
-import reducers from './reducer';
+import reducers from './reducer/index';
 import App from './component/app/index';
 import Item from './container/item/index';
+import Cart from './container/shopping-cart/index';
 import { getItems } from './actions/index';
-// import ShoppingCart from './container/shopping-cart/index';
 
 const store = createStore(
   reducers,
@@ -25,6 +25,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route path='/products/:id' component={Item} />
+        <Route path='/cart' component={Cart} />
         <Route path='/' component={App} />
       </Switch>
     </BrowserRouter>
