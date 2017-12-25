@@ -8,10 +8,6 @@ class ShoppingCart extends Component {
 
   render () {
     
-    console.log('cart ', this.props.cart);
-    console.log('items ', this.props.items[1]);
-    console.log('items ', this.props.cart[0]);
-
     const { cart, items } = this.props;
 
     let cartList = cart.map(id => {

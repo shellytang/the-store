@@ -7,10 +7,11 @@ const initialState = {
 
 export default (state=initialState.itemIds, action) => {
   switch(action.type) {
-    case type.ADD_ITEM:
-    console.log('STATE: ', state);
+    case type.ADD_ITEM:;
     let { payload } = action;
-      // return {...state, [payload.id]: payload};
+      if(state.indexOf(payload.id) !== -1) {
+        return state;
+      }
       return [...state, payload.id];
     default: 
       return state;
