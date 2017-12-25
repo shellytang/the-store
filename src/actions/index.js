@@ -1,8 +1,5 @@
 import store from '../data/store.json';
-import type from '../constants/'
-
-export const GET_ITEMS = 'GET_ITEMS';
-export const ADD_ITEM = 'ADD_ITEM';
+import type from '../constants/';
 
 export const getItems = () => {
   return {
@@ -16,4 +13,11 @@ export const addToCart = (item) => {
     type: type.ADD_ITEM,
     payload: item
   };
+}
+
+export const removeItem = (item) => {
+  return {
+    type: type.REMOVE_ITEM,
+    payload: item
+  }
 }
