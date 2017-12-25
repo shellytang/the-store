@@ -9,12 +9,17 @@ class ShoppingCart extends Component {
   render () {
     
     console.log('cart ', this.props.cart);
-    const cartList = _.map(this.props.cart, (item) => {
+    console.log('items ', this.props.items[1]);
+    console.log('items ', this.props.cart[0]);
+
+    const { cart, items } = this.props;
+
+    let cartList = cart.map(id => {
       return (
-        <div key={item.id}>
-          <p>{item.name}</p>
-          <p>{item.description}</p>
-          <p>${item.price}</p>
+        <div key={id}>
+          <p>{items[id].name}</p>
+          <p>{items[id].description}</p>
+          <p>${items[id].price}</p>
         </div>
       );
     });
@@ -36,7 +41,8 @@ class ShoppingCart extends Component {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart
+  cart: state.cart,
+  items: state.items
 })
 
 export default connect(mapStateToProps)(ShoppingCart);

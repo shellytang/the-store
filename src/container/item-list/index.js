@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-// import { getItems } from '../../actions/index';
 import Item from '../item/index';
 
 class ItemList extends Component {
@@ -14,7 +13,7 @@ class ItemList extends Component {
           to={`/products/${item.id}`} 
           key={item.id}
           item={item}
-          >
+        >
            <div>
             <p>{item.name}</p>
             <p>${item.price}</p>
