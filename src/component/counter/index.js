@@ -10,13 +10,15 @@ class Counter extends Component {
     this.decrement = this.decrement.bind(this);
   }
 
-  increment() {
+  increment(e) {
+    e.preventDefault()
     this.setState({
       count: this.state.count + 1
     }, () => this.props.handleChange(this.state.count));
   }
 
-  decrement() {
+  decrement(e) {
+    e.preventDefault();
     if(this.state.count === 1) {
       return this.state.count;
     }

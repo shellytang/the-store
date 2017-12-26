@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { removeItem } from '../../actions/index';
+import { removeItem, updateQty } from '../../actions/index';
 
 class ShoppingCart extends Component {
 
   render () {
 
     const { cart, items } = this.props;
-    console.log('what is here: ', cart)
     let cartList = cart.itemIds.map(id => {
       return (
         <div key={id}>
@@ -17,7 +16,7 @@ class ShoppingCart extends Component {
           <p>{items[id].description}</p>
           <p>${items[id].price}</p>
           <p>Quantity: {cart.quantityById[id]}</p>
-          <button onClick={() => this.props.removeItem(id)}>Remove</button>
+          <button onClick={() => this.props.removeItem(id, this.props.updateQty(0, id))}>Remove</button>
           <Link to={`products/${id}`}>Edit item</Link>
         </div>
       );
@@ -48,6 +47,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   removeItem: (item) => dispatch(removeItem(item)),
+  updateQty: (quantity, item) => dispatch(updateQty(quantity, item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);

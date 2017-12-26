@@ -5,9 +5,8 @@ const initialState = {
   quantityById: {}
 }
 
-const addItems = (state=initialState.itemIds, action) => {
+const updateItems = (state=initialState.itemIds, action) => {
   let { payload } = action;
-  
   switch(action.type) {
     case type.ADD_ITEM:
       if(state.indexOf(payload.id) !== -1) {
@@ -28,12 +27,18 @@ const setQuantity = (state = initialState.quantityById, action) => {
   switch (action.type) {
     case type.SET_QUANTITY:
       let id = Object.keys(payload);
-      if(!state[id]) {
-        return {...state, [id]: payload[id]}
+      if (!state[id]) {
+        return { ...state, [id]: payload[id] }
       } else {
-        let updatedQty = state[id] += payload[id];
-        state[id] = updatedQty;
+        //remove item from state when 'remove' is clicked
+        if (payload[id] === 0) {
+            delete state[id];
+            return state;
+        } else {
+          let updatedQty = state[id] += payload[id];
+          state[id] = updatedQty;
         return state;
+        }
       }
     default:
       return state;
@@ -46,7 +51,7 @@ const cart = (state=initialState, action ) => {
       return state;
     default: 
       return {
-        itemIds: addItems(state.itemIds, action),
+        itemIds: updateItems(state.itemIds, action),
         quantityById: setQuantity(state.quantityById, action)
       }
   }
