@@ -9,6 +9,7 @@ class ShoppingCart extends Component {
   render () {
 
     const { cart, items } = this.props;
+    console.log('what is here: ', cart)
     let cartList = cart.itemIds.map(id => {
       return (
         <div key={id}>
@@ -17,6 +18,7 @@ class ShoppingCart extends Component {
           <p>${items[id].price}</p>
           <p>Quantity: {cart.quantityById[id]}</p>
           <button onClick={() => this.props.removeItem(id)}>Remove</button>
+          <Link to={`products/${id}`}>Edit item</Link>
         </div>
       );
     });

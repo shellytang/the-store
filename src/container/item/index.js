@@ -8,13 +8,12 @@ class Item extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemQty: 0
+      itemQty: 1
     }
     this.handleQty = this.handleQty.bind(this);
   }
 
   handleQty(qty) {
-    // let price = qty * this.props.items[this.props.match.params.id].price;
     this.setState({
       itemQty: qty
     });
@@ -25,7 +24,6 @@ class Item extends Component {
     const { items } = this.props;
     const { id } = this.props.match.params;
     const selectedItem = items[id];
-    
     return (
       <div>
        <h2>This is the item component!</h2>
@@ -35,7 +33,7 @@ class Item extends Component {
           <p>${selectedItem.price}</p>
           <p>{selectedItem.description}</p>
         </div>
-        <Counter handleChange={this.handleQty}/>
+        <Counter handleChange={this.handleQty} />
         <button onClick={() => this.props.addToCart(selectedItem, this.props.updateQty(this.state.itemQty, id))
 }>Add to cart</button>
         <Link to='/cart'>Cart</Link>

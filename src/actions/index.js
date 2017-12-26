@@ -16,7 +16,6 @@ export const addToCart = (item, itemQty, id) => {
 }
 
 export const updateQty = (quantity, id) => {
-  // let itemQty = [id, quantity];
   let itemQty = {[id]: quantity}
   return {
     type: type.SET_QUANTITY,
