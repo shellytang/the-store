@@ -9,13 +9,13 @@ class ShoppingCart extends Component {
   render () {
 
     const { cart, items } = this.props;
-    console.log('ids in cart', cart);
-    let cartList = cart.map(id => {
+    let cartList = cart.itemIds.map(id => {
       return (
         <div key={id}>
           <p>{items[id].name}</p>
           <p>{items[id].description}</p>
           <p>${items[id].price}</p>
+          <p>Quantity: {cart.quantityById[id]}</p>
           <button onClick={() => this.props.removeItem(id)}>Remove</button>
         </div>
       );
