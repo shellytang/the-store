@@ -37,7 +37,7 @@ const setQuantity = (state = initialState.quantityById, action) => {
         } else {
           let updatedQty = state[id] += payload[id];
           state[id] = updatedQty;
-        return state;
+          return state;
         }
       }
     default:

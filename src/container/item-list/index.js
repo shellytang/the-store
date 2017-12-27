@@ -30,8 +30,8 @@ class ItemList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   items: state.items
 })
 
-export default connect(mapStateToProps)(ItemList);
+export default connect(mapStateToProps, null)(ItemList);

@@ -12,9 +12,9 @@ class Counter extends Component {
 
   increment(e) {
     e.preventDefault()
-    this.setState({
-      count: this.state.count + 1
-    }, () => this.props.handleChange(this.state.count));
+    this.setState((prevState) => ({
+      count: prevState.count + 1
+    }), () => this.props.handleChange(this.state.count));
   }
 
   decrement(e) {
@@ -22,9 +22,9 @@ class Counter extends Component {
     if(this.state.count === 1) {
       return this.state.count;
     }
-    this.setState({
+    this.setState((prevState) => ({
       count: this.state.count - 1
-    }, () => this.props.handleChange(this.state.count));
+    }), () => this.props.handleChange(this.state.count));
   }
 
   render() {

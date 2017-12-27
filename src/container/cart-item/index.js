@@ -30,7 +30,7 @@ class CartItem extends Component {
     const id = this.props.itemId;
     const { items } = this.props;
     let itemTotal = this.state.count * items[id].price;
-
+    console.log('qty: ', this.props.cart);
     return (
       <div>
         <Link to={`products/${id}`}>{items[id].name}</Link>
