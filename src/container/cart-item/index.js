@@ -37,7 +37,11 @@ class CartItem extends Component {
         <p>Price: ${items[id].price}</p>
         <Counter qty={this.state.count} handleChange={this.handleQty}/>
         <p>Total: ${itemTotal}</p>
-        <button onClick={() => this.props.removeItem(id, this.props.updateQty(0, id))}>Remove</button>
+        <button onClick={() => {
+            this.props.removeItem(id);
+            this.props.updateQty(0, id);
+          }
+        }>Remove</button>
       </div>
 
     )

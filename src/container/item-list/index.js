@@ -11,7 +11,6 @@ class ItemList extends Component {
         <Link 
           to={`/products/${item.id}`} 
           key={item.id}
-          item={item}
         >
            <div>
             <p>{item.name}</p>

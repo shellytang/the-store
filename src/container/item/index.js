@@ -21,7 +21,6 @@ class Item extends Component {
   }
 
   render() {
-
     const { items } = this.props;
     const { id } = this.props.match.params;
     const selectedItem = items[id];

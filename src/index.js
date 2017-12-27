@@ -12,6 +12,7 @@ import App from './component/app/index';
 import Item from './container/item/index';
 import Cart from './container/shopping-cart/index';
 import { getItems } from './actions/index';
+import Navbar from './container/navbar/index';
 
 const store = createStore(
   reducers,
@@ -23,11 +24,12 @@ store.dispatch(getItems()); //dispatch action that pulls the items data and upda
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Switch>
-        <Route path='/products/:id' component={Item} />
-        <Route path='/cart' component={Cart} />
-        <Route path='/' component={App} />
-      </Switch>
+      <div>
+        <Route path='*' component={Navbar} />
+        <Route exact path='/' component={App} />
+        <Route exact path='/products/:id' component={Item} />
+        <Route exact path='/cart' component={Cart} />
+      </div>
     </BrowserRouter>
   </Provider>
 , document.getElementById('root'));
