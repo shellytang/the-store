@@ -3,28 +3,31 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { removeItem, updateQty } from '../../actions/index';
+import Counter from '../../component/counter/index';
+import CartItem from '../cart-item/index';
 
 class ShoppingCart extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      itemQty: 1
+    }
+    this.handleQty = this.handleQty.bind(this);
+  }
+
+  handleQty(qty) {
+    this.props.updateQty(qty);
+  }
 
   render () {
-
     const { cart, items } = this.props;
     let subTotal = 0;
 
-    let cartList = cart.itemIds.map(id => {
+    const cartList = cart.itemIds.map(id => {
       let itemTotal = cart.quantityById[id] * items[id].price;
       subTotal+= itemTotal;
-
       return (
-        <div key={id}>
-          <p>{items[id].name}</p>
-          <p>{items[id].description}</p>
-          <p>${items[id].price}</p>
-          <p>Quantity: {cart.quantityById[id]}</p>
-          <p>Total: ${itemTotal}</p>
-          <button onClick={() => this.props.removeItem(id, this.props.updateQty(0, id))}>Remove</button>
-          <Link to={`products/${id}`}>Edit item</Link>
-        </div>
+        <CartItem key={id} itemId={id}/>
       );
     });
 
@@ -37,7 +40,7 @@ class ShoppingCart extends Component {
               {cartList}
             </ul>
             <div>
-              <p>Subtotal: ${subTotal}</p>
+              <h2>Subtotal: ${subTotal}</h2>
             </div>
           </div>
         }

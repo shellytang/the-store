@@ -33,7 +33,7 @@ class Item extends Component {
           <p>${selectedItem.price}</p>
           <p>{selectedItem.description}</p>
         </div>
-        <Counter handleChange={this.handleQty} />
+        <Counter qty={this.state.itemQty} handleChange={this.handleQty} />
         <button onClick={() => this.props.addToCart(selectedItem, this.props.updateQty(this.state.itemQty, id))
 }>Add to cart</button>
         <Link to='/cart'>Cart</Link>
