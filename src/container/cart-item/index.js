@@ -28,19 +28,16 @@ class CartItem extends Component {
 
   render() {
     const id = this.props.itemId;
-    const { cart , items } = this.props;
+    const { items } = this.props;
     let itemTotal = this.state.count * items[id].price;
 
     return (
       <div>
-        <h2>WHAT: {this.state.count}</h2>
-        <p>{items[id].name}</p>
-        <p>{items[id].description}</p>
+        <Link to={`products/${id}`}>{items[id].name}</Link>
         <p>Price: ${items[id].price}</p>
-        <button onClick={() => this.props.removeItem(id, this.props.updateQty(0, id))}>Remove</button>
         <Counter qty={this.state.count} handleChange={this.handleQty}/>
         <p>Total: ${itemTotal}</p>
-        <Link to={`products/${id}`}>Edit item</Link>
+        <button onClick={() => this.props.removeItem(id, this.props.updateQty(0, id))}>Remove</button>
       </div>
 
     )

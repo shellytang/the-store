@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
 import { removeItem, updateQty } from '../../actions/index';
-import Counter from '../../component/counter/index';
 import CartItem from '../cart-item/index';
 
 class ShoppingCart extends Component {
@@ -34,6 +32,7 @@ class ShoppingCart extends Component {
     return (
       <div>
         <h2>This is the shopping cart!</h2>
+        <Link to='/'>Back to products</Link>
         { cart.itemIds.length === 0 ? <div>Cart is empty</div> :
           <div>
             <ul>
@@ -44,7 +43,6 @@ class ShoppingCart extends Component {
             </div>
           </div>
         }
-        <Link to='/'>Back to products</Link>
       </div>
     );
 

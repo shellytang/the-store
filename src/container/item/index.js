@@ -8,7 +8,8 @@ class Item extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemQty: 1
+      itemQty: 1,
+      isClicked: false
     }
     this.handleQty = this.handleQty.bind(this);
   }
@@ -20,10 +21,11 @@ class Item extends Component {
   }
 
   render() {
-    
+
     const { items } = this.props;
     const { id } = this.props.match.params;
     const selectedItem = items[id];
+
     return (
       <div>
        <h2>This is the item component!</h2>
@@ -34,18 +36,26 @@ class Item extends Component {
           <p>{selectedItem.description}</p>
         </div>
         <Counter qty={this.state.itemQty} handleChange={this.handleQty} />
-        <button onClick={() => this.props.addToCart(selectedItem, this.props.updateQty(this.state.itemQty, id))
-}>Add to cart</button>
-        <Link to='/cart'>Cart</Link>
+        <button onClick={ (e) => {
+            e.preventDefault();
+            this.props.addToCart(selectedItem);
+            this.props.updateQty(this.state.itemQty, id);
+            this.setState({
+              isClicked: true
+            });
+          }
+        }>
+          Add to Cart
+        </button>
+        { this.state.isClicked ? <Link to='/cart'>View in Cart</Link> : undefined }
       </div>
     )
   }
 }
 
-
 const mapStateToProps = (state) => ({
   items: state.items,
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
   addToCart: (item, qty, id) => dispatch(addToCart(item, qty, id)),
